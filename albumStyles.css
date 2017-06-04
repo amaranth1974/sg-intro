@@ -6,8 +6,28 @@
 	height: 400px;
 }
 
-div {
+#info {
+	border: 1px black;
+	border-style: hidden hidden solid hidden;
+}
+
+body {
 	text-align: center;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+	background-color: lawngreen;
+}
+
+div {
+	margin-left: auto;
+	margin-right: auto;
+	width: 75%;
 }
 
 h1, h2 {
@@ -23,17 +43,21 @@ li {
 }
 
 table {
-	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	width: 80%;
+	width: 100%;
 	border-collapse: collapse;
 }
 
-th {
+table, th, td {
+	border: 2px solid black;
+}
+
+thead {
 	background-color: grey;
 }
 
-table, th, td {
-	border: 1px solid black;
+tbody {
+	font-style: italic;
+	background-color: lemonchiffon;
 }
