@@ -2,21 +2,82 @@
 
 <html lang="en">
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-	<script type="text/javascript">
-	</script>
 	<title>Sample Problem</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		function printNumbers() {
+			// convert to int
+			var nStart = document.getElementById("nStart").value;
+			nStart = parseInt(nStart, 10);
+			var nLast = document.getElementById("nLast").value;
+			nLast = parseInt(nLast, 10);
+			var step = document.getElementById("step").value;
+			step = parseInt(step, 10);
+
+			// input validation
+			inputValid = true;
+
+			if (isNaN(nStart)) {
+				inputValid = false;
+				document.getElementById("errorNStart").style.display = "";
+			}
+			if (isNaN(nLast) || (nLast < nStart)) {
+				inputValid = false;
+				document.getElementById("errorNLast").style.display = "";
+			}
+			if (isNaN(step) || (step < 0)) {
+				inputValid = false;
+				document.getElementById("errorStep").style.display = "";
+			}
+
+			// continue if valid
+			if (inputValid) {
+				// start a results string to print when done
+				var resultStr = "Here are the even numbers between " + nStart + " and " + nLast + ":";
+				// find each even number and append it with a newline
+				for (var i = nStart; i <= nLast; i += step) {
+					if ((i % 2) == 0) {
+						resultStr += ("\n" + i);
+					}
+				}
+				document.getElementById("results").innerText = resultStr;
+			}
+			else {
+				document.getElementById("results").innerText = "\nError: invalid input.";
+			}
+		}
+	</script>
 </head>
 <body>
-	<h1>Sample</h1>
+	<h1>Sample Audition Problem</h1>
 	<div>
-		Starting Number <input id="nStart" type="text">
+		<form>
+			<label>Starting Number</label>
+			<input id="nStart" type="text"><br />
+			<p>
+				<span id="errorNStart" style="display: none">Numeric entry required.</span>
+			</p>
+			<label>Ending Number</label>
+			<input id="nLast" type="text"><br />
+			<p>
+				<span id="errorNLast" style="display: none">Numeric entry greater than the starting number required.</span>
+			</p>
+			<label>Step</label>
+			<input id="step" type="text"><br />
+			<p>
+				<span id="errorStep" style="display: none">Positive numeric entry required.</span>
+			</p>
+			<input type=button value="print em" onclick="printNumbers()">
+		</form>
 	</div>
-	<div>
-		Ending Number <input id="nLast" type="text">
-	</div>
-	<div>
-		Step <input id="step" type="text">
+	<div id="results">
 	</div>
 </body>
 </html>
