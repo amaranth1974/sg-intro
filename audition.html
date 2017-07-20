@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<title>Audition</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		function sumMultiples() {
+			var n = document.getElementById("number").value;
+			n = parseInt(n, 10);
+			var times = document.getElementById("times").value;
+			times = parseInt(times, 10);
+
+			// validate
+			inputValid = true;
+
+			if (isNaN(n) || isNaN(times)) {
+				inputValid = false;
+			}
+
+			if (inputValid) {
+				var resultStr = "Here is the sum of the first " + times + " multiples of " + n + ":";
+				var sum = 0;
+				var currentMultiple = n;
+				for (var i = 0; i < times; ++i) {
+					sum += currentMultiple;
+					currentMultiple += n;
+				}
+				resultStr += "\n" + sum;
+			}
+			else {
+				resultStr = "Error: invalid input"
+			}
+
+			document.getElementById("results").innerText = resultStr;
+			document.getElementById("results").style.display = "";
+		}
+	</script>
+</head>
+<body>
+<div>
+	<h1>Sum Multiples</h1>
+	Number: <input id="number" type="text"><br />
+	Multiples: <input id="times" type="text"><br />
+	<button onclick="sumMultiples()">do it</button>
+	<br />
+	<p id="results" style="display: none">
+	</p>
+</div>
+</body>
+</html>
+
